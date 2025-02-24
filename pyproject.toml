@@ -1,78 +1,82 @@
-# -------------------------------
-# build-system
-# -------------------------------
+# pyproject.toml
 [build-system]
-requires = [
-    "setuptools>=61.0",
-    "wheel"
-]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-# -------------------------------
-# project (PEP 621 metadata)
-# -------------------------------
-[project]
+[tool.poetry]
 name = "verl"
-# We'll mark the version as "dynamic" because it's read from the file "verl/version/version" 
-# (PEP 621 calls this "dynamic version"). 
-# The actual version is specified in the [tool.setuptools.dynamic] section below.
-dynamic = ["version"]
-
+version = "0.1.0"
 description = "veRL: Volcano Engine Reinforcement Learning for LLM"
-license = {file = "LICENSE"}  # or "Apache-2.0", if you prefer an SPDX identifier
-readme = {file = "README.md", content-type = "text/markdown"}
-requires-python = ">=3.8"
-
+license = "Apache-2.0"
+readme = "README.md"
 authors = [
-  { name = "Bytedance - Seed - MLSys", email = "zhangchi.usc1992@bytedance.com" },
-  { name = "Bytedance - Seed - MLSys", email = "gmsheng@connect.hku.hk" },
+    "Bytedance - Seed - MLSys <zhangchi.usc1992@bytedance.com>",
+    "Bytedance - Seed - MLSys <gmsheng@connect.hku.hk>"
+]
+repository = "https://github.com/volcengine/verl"
+homepage = "https://github.com/volcengine/verl"
+
+# Package discovery – include your package directory.
+packages = [
+    { include = "verl" },
+    { include = "pretraining_analysis" }
 ]
 
-# Dependencies corresponding to install_requires in setup.py
-dependencies = [
-    "accelerate",
-    "codetiming",
-    "datasets",
-    "dill",
-    "hydra-core",
-    "numpy",
-    "pybind11",
-    "ray",
-    "tensordict",
-    "transformers<4.48",
-    "vllm<=0.6.3",
-]
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+#accelerate = "*"
+codetiming = "*"
+datasets = "*"
+dill = "*"
+#hydra-core = "*"
+# Use newer numpy version compatible with Python 3.12
+numpy = ">=1.26.0"
+pybind11 = "*"
+#ray = "*"
+tensordict = "*"
+transformers = "<4.48"
+#vllm = "<=0.6.3"
+pandas = "*"
+tqdm = "*"
+nltk = "^3.9.1"
+datasketch = "*"
+pyyaml = "*"
+marvin = "^2.3.8"
+loguru = "^0.7.3"
+hf-transfer = "^0.1.9"
+pyarrow = "^19.0.1"
+psutil = "^7.0.0"
+spacy = "^3.8.4"
 
-# Optional dependencies (extras_require in setup.py)
-[project.optional-dependencies]
-test = [
-  "pytest", "yapf"
-]
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+yapf = "*"
+pre-commit = "*"
+black = "*"
+isort = "*"
+flake8 = "*"
+mypy = "*"
 
-# URLs
-[project.urls]
-Homepage = "https://github.com/volcengine/verl"
+[tool.poetry.scripts]
+verl = "verl.main:main"
 
-# -------------------------------
-# tool.setuptools - Additional config
-# -------------------------------
-[tool.setuptools]
-# True means `setuptools` will attempt to include all relevant files in package_data automatically.
-# This corresponds to `include_package_data=True` in setup.py.
-include-package-data = true
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
 
-# We read the version from a file in 'verl/version/version'
-[tool.setuptools.dynamic]
-version = {file = "verl/version/version"}
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
 
-# If you need to mimic `package_dir={'': '.'}`:
-[tool.setuptools.package-dir]
-"" = "."
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
 
-# If you need to include specific non-Python data (like YAML files or version file):
-# This is the rough equivalent of package_data={'': ['version/*'], 'verl': ['trainer/config/*.yaml']}
-[tool.setuptools.package-data]
-verl = [
-  "version/*",
-  "trainer/config/*.yaml"
-]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra -q"

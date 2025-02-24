@@ -113,3 +113,14 @@ tests/e2e/toy_examples/deepspeed/synchronous/output.txt
 # vim
 *.swp
 model_checkpoints/
+
+# Poetry
+poetry.lock
+.venv/
+.python-version
+.coverage
+htmlcov/
+.pytest_cache/
+
+# data
+pretraining_analysis/data/pretrained_data/*
