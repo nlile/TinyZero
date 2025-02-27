@@ -1,0 +1,56 @@
+verification_queries:
+  # Systematic error-checking patterns
+  - "Does that make sense?"
+  - "Is this correct?"
+  - "Wait, does that check out?"
+  - "Am I missing something?"
+  - "Hmm… does that work?"
+  - "Let me verify that."
+  - "That makes sense, right?"
+  - "Hold on, is this right?"
+  - "Let's double-check this."
+  - "Let's check by doing the reverse."
+  - "Let's verify by working backward."
+  - "Can we check this by reversing the process?"
+  - "To confirm, let's undo the steps."
+
+backtracking_queries:
+  # Abandoning failing approaches patterns
+  - "Wait, actually..."
+  - "Oh, hold on..."
+  - "Wait a second..."
+  - "Actually, let me rethink that."
+  - "Hmm, let me go back for a moment."
+  - "I might need to check this again."
+  - "Let's pause and reassess."
+  - "We might need to backtrack here."
+  - "Perhaps we should try a different approach."
+  - "This path might not be optimal."
+
+subgoal_queries:
+  # Decomposing problems into steps
+  - "Let's think step by step."
+  - "Let's go through this one step at a time."
+  - "Breaking it down step by step..."
+  - "Thinking about it logically, first..."
+  - "Step 1: Let's figure out the starting point."
+  - "If we follow the steps carefully, we get..."
+  - "To solve this, let's analyze it piece by piece."
+  - "Going through this systematically, we have..."
+  - "Okay, let's solve this gradually."
+  - "Let's break this into smaller parts."
+  - "How about we simplify this first?"
+  - "Let's take it one step at a time."
+
+backward_chaining_queries:
+  # Reasoning from outcomes to inputs
+  - "Let's work backwards from our goal."
+  - "Starting from what we want to achieve..."
+  - "If we consider our desired outcome first..."
+  - "Working backward from the solution..."
+  - "To get there, we need to first..."
+  - "What prerequisites do we need?"
+  - "What conditions would make this possible?"
+  - "What needs to be true for this to work?"
+  - "If we want this result, we must have..."
+  - "Let's identify what leads to this outcome."
